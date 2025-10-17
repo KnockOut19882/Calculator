@@ -12,19 +12,23 @@ function createAndWriteOutput(operator, resultBeforeCalc, calcNumber) {
   outputResult(currentResult, calcDescription);
 }
 
+function writeToLog(operation, number, prevResult, result) {
+   const logEntry = {
+    operation: operation,
+    number: number,
+    prevResult: prevResult,
+    result: result
+  };
+  logEntries.push(logEntry);
+  console.log(logEntries);
+}
+
 function add(num1, num2) {
   const enteredNumber = getUserInput();
   const initialResult = currentResult;
   currentResult += enteredNumber;
   createAndWriteOutput("+", initialResult, enteredNumber);
-  const logEntry = {
-    operation: 'ADD',
-    prevResult: initialResult,
-    number: enteredNumber,
-    result: currentResult
-  };
-  logEntries.push(logEntry);
-  console.log('Log entry:', logEntry);
+  writeToLog('ADD', enteredNumber, initialResult, currentResult);
 }
 
 function subtract() {
@@ -32,6 +36,7 @@ function subtract() {
   const initialResult = currentResult;
   currentResult -= enteredNumber;
   createAndWriteOutput("-", initialResult, enteredNumber);
+  writeToLog('SUBTRACT', enteredNumber, initialResult, currentResult);
 }
 
 function divide() {
@@ -39,6 +44,7 @@ function divide() {
   const initialResult = currentResult;
   currentResult /= enteredNumber;
   createAndWriteOutput("/", initialResult, enteredNumber);
+  writeToLog('DIVID', enteredNumber, initialResult, currentResult);
 }
 
 function multiply() {
@@ -46,6 +52,7 @@ function multiply() {
   const initialResult = currentResult;
   currentResult *= enteredNumber;
   createAndWriteOutput("*", initialResult, enteredNumber);
+  writeToLog('MULTIPLY', enteredNumber, initialResult, currentResult);
 }
 
 addBtn.addEventListener("click", add);
